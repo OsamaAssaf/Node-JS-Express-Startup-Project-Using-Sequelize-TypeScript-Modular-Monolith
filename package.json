@@ -1,0 +1,49 @@
+{
+  "name": "node-js-express-startup-project",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js + Express starter with pre-configured structure, middlewares, and environment setup.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "dev": "nodemon",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project.git"
+  },
+  "keywords": [],
+  "author": "Osama Assaf",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project/issues"
+  },
+  "homepage": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project#readme",
+  "dependencies": {
+    "@prisma/client": "^6.14.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "prisma": "^6.14.0",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.9.2"
+  }
+}
