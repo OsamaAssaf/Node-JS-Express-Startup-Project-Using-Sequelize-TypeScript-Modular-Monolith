@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+
 import { prisma } from "../lib/prisma";
 import { CreateUserInput } from "../schemas/user.schema";
 import { encryptPassword } from "../services/auth-service";

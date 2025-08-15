@@ -1,7 +1,9 @@
 import { Router } from "express";
-import users from "./users.route";
-import auth from "./auth.route";
+
 import { authenticate } from "../middlewares/auth.middleware";
+
+import auth from "./auth.route";
+import users from "./users.route";
 
 const router = Router();
 

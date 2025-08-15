@@ -1,7 +1,9 @@
 import express from "express";
+
 import { errorHandler, notFound } from "./middlewares/error.middleware";
 import { localeMiddleware } from "./middlewares/locale.middleware";
 import routes from "./routes";
+import i18n from "./config/i18n";
 
 const app = express();
 

@@ -1,7 +1,8 @@
 import { Router } from "express";
+
+import { list, create } from "../controllers/posts.controller";
 import { validate } from "../middlewares/validate.middleware";
 import { createPostSchema } from "../schemas/post.schema";
-import { list, create } from "../controllers/posts.controller";
 const router = Router();
 
 router.get("/", list);

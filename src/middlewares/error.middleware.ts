@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
+
 import { errorResponse } from "../utils/response-handler";
 
 export function notFound(req: Request, res: Response) {

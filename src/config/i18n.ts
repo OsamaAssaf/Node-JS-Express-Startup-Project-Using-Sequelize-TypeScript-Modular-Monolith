@@ -1,4 +1,5 @@
 import path from "path";
+
 import i18n from "i18n";
 
 i18n.configure({
@@ -10,3 +11,5 @@ i18n.configure({
   autoReload: true,
   updateFiles: false,
 });
+
+export default i18n;

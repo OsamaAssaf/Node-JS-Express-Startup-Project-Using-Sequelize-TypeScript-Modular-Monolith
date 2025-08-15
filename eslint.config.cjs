@@ -1,15 +1,11 @@
-const { defineConfig, globalIgnores } = require("eslint/config");
-
-const tsParser = require("@typescript-eslint/parser");
-const globals = require("globals");
-const typescriptEslint = require("@typescript-eslint/eslint-plugin");
-const _import = require("eslint-plugin-import");
-
 const { fixupPluginRules, fixupConfigRules } = require("@eslint/compat");
-
-const js = require("@eslint/js");
-
 const { FlatCompat } = require("@eslint/eslintrc");
+const js = require("@eslint/js");
+const typescriptEslint = require("@typescript-eslint/eslint-plugin");
+const tsParser = require("@typescript-eslint/parser");
+const { defineConfig, globalIgnores } = require("eslint/config");
+const _import = require("eslint-plugin-import");
+const globals = require("globals");
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
