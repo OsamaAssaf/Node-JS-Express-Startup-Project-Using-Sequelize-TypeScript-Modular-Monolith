@@ -14,7 +14,7 @@ export async function list(_req: Request, res: Response, next: NextFunction) {
 }
 
 export async function create(
-  req: Request<{}, {}, CreateUserInput>,
+  req: Request<object, object, CreateUserInput>,
   res: Response,
   next: NextFunction,
 ) {

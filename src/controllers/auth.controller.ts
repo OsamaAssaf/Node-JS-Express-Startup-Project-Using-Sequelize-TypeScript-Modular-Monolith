@@ -2,11 +2,11 @@ import { Request, Response, NextFunction } from "express";
 
 import { prisma } from "../lib/prisma";
 import { LoginInput, RegisterInput } from "../schemas/auth.schema";
-import { comparePassword, encryptPassword } from "../services/password-service";
 import { generateToken } from "../services/jwt-token-service";
+import { comparePassword, encryptPassword } from "../services/password-service";
 
 export async function register(
-  req: Request<{}, {}, RegisterInput>,
+  req: Request<object, object, RegisterInput>,
   res: Response,
   next: NextFunction,
 ) {
@@ -29,7 +29,11 @@ export async function register(
   }
 }
 
-export async function login(req: Request<{}, {}, LoginInput>, res: Response, next: NextFunction) {
+export async function login(
+  req: Request<object, object, LoginInput>,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const user = await prisma.user.findUnique({
       where: { email: req.body.email },

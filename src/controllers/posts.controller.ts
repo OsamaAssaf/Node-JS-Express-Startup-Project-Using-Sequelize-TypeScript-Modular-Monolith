@@ -13,7 +13,7 @@ export async function list(_req: Request, res: Response, next: NextFunction) {
 }
 
 export async function create(
-  req: Request<{}, {}, CreatePostInput>,
+  req: Request<object, object, CreatePostInput>,
   res: Response,
   next: NextFunction,
 ) {
