@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validate } from "../middlewares/validate";
+import { validate } from "../middlewares/validate.middleware";
 import { createPostSchema } from "../schemas/post.schema";
 import { list, create } from "../controllers/posts.controller";
 const router = Router();

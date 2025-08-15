@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { prisma } from "../lib/prisma";
 import { CreateUserInput } from "../schemas/user.schema";
+import { encryptPassword } from "../services/auth-service";
 
 export async function list(_req: Request, res: Response, next: NextFunction) {
   try {
@@ -17,7 +18,10 @@ export async function create(
   next: NextFunction,
 ) {
   try {
-    const user = await prisma.user.create({ data: req.body });
+    const hashedPassword = await encryptPassword(req.body.password);
+    const user = await prisma.user.create({
+      data: { email: req.body.email, name: req.body.name, password: hashedPassword },
+    });
     res.status(201).json(user);
   } catch (e) {
     next(e);
