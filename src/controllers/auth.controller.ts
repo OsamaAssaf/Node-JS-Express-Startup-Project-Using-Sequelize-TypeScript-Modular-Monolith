@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 import { prisma } from "../lib/prisma";
 import { LoginInput, RegisterInput } from "../schemas/auth.schema";
-import { comparePassword, encryptPassword } from "../services/auth-service";
+import { comparePassword, encryptPassword } from "../services/password-service";
 import { generateToken } from "../services/jwt-token-service";
 
 export async function register(
