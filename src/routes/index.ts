@@ -10,7 +10,7 @@ const router = Router();
 router.get("/health", (_req, res) => res.json({ ok: true }));
 
 router.get("/me", authenticate, (req, res) => {
-  res.json({ message: "Hello, authenticated user!", user: (req as any).user });
+  res.json({ message: "Hello, authenticated user!", user: req.user });
 });
 
 router.use("/users", users);
