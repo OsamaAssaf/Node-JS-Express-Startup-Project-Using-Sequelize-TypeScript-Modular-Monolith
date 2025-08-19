@@ -8,10 +8,11 @@ import routes from "./routes";
 const app = express();
 
 app.use(express.json());
-app.use("/api", routes);
 
 app.use(i18n.init);
 app.use(localeMiddleware);
+
+app.use("/api", routes);
 
 app.use(notFound);
 app.use(errorHandler);

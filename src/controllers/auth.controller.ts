@@ -4,6 +4,7 @@ import { prisma } from "../lib/prisma";
 import { LoginInput, RegisterInput } from "../schemas/auth.schema";
 import { generateToken } from "../services/jwt-token-service";
 import { comparePassword, encryptPassword } from "../services/password-service";
+import { errorResponse } from "../utils/response-handler";
 
 export async function register(
   req: Request<object, object, RegisterInput>,
@@ -16,7 +17,7 @@ export async function register(
       select: { id: true },
     });
     if (user) {
-      res.status(201).json("User already exists");
+      errorResponse(res, res.__("user_already_exists"));
       return;
     }
     const hashedPassword = await encryptPassword(req.body.password);

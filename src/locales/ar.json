@@ -1,3 +1,11 @@
 {
-  "something_went_wrong": "حدث خطأ!"
+  "something_went_wrong": "حدث خطأ!",
+  "user_already_exists": "المستخدم موجود من قبل",
+  "validation": {
+    "email_invalid": "البريد الإلكتروني غير صالح",
+    "password_min": "كلمة المرور يجب أن تكون على الأقل 6 أحرف",
+    "password_required": "يجب إدخال كلمة المرور",
+    "name_min": "الاسم يجب أن يكون على الأقل حرفان",
+    "name_required": "يجب إدخال الاسم"
+  }
 }

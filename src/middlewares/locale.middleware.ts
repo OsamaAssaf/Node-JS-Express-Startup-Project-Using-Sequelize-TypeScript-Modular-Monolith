@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 
-export interface LocaleRequest extends Request {
-  locale: string;
-}
+import i18n from "../config/i18n";
+
+// export interface LocaleRequest extends Request {
+//   locale: string;
+// }
 
 export function localeMiddleware(req: Request, res: Response, next: NextFunction): void {
   // Priority order: query parameter > header > default
@@ -25,7 +27,8 @@ export function localeMiddleware(req: Request, res: Response, next: NextFunction
   }
 
   // Set locale on request object
-  (req as LocaleRequest).locale = locale;
+  req.locale = locale;
+  // (req as LocaleRequest).locale = locale;
 
   // Safely set locale for i18n
   req.setLocale(locale);
@@ -34,6 +37,6 @@ export function localeMiddleware(req: Request, res: Response, next: NextFunction
 }
 
 // Helper function to get locale from request (for use in JsonResponse)
-export function getLocaleFromRequest(req: Request): string {
-  return (req as LocaleRequest).locale || "en";
-}
+// export function getLocaleFromRequest(req: Request): string {
+//   return req.locale || "en";
+// }
