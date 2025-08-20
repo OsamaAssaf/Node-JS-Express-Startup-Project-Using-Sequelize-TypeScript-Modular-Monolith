@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
-import { prisma } from "../lib/prisma";
-import { LoginInput, RegisterInput } from "../schemas/auth.schema";
-import { generateToken } from "../services/jwt-token-service";
-import { comparePassword, encryptPassword } from "../services/password-service";
-import { errorResponse } from "../utils/response-handler";
+import { prisma } from '../lib/prisma';
+import { LoginInput, RegisterInput } from '../schemas/auth.schema';
+import { generateToken } from '../services/jwt-token-service';
+import { comparePassword, encryptPassword } from '../services/password-service';
+import { errorResponse } from '../utils/response-handler';
 
 export async function register(
   req: Request<object, object, RegisterInput>,
@@ -17,7 +17,7 @@ export async function register(
       select: { id: true },
     });
     if (user) {
-      errorResponse(res, res.__("user_already_exists"));
+      errorResponse(res, res.__('user_already_exists'));
       return;
     }
     const hashedPassword = await encryptPassword(req.body.password);
@@ -40,7 +40,7 @@ export async function login(
       where: { email: req.body.email },
     });
     if (!user) {
-      res.status(201).json("Email or password not correct");
+      res.status(201).json('Email or password not correct');
       return;
     }
 
@@ -50,7 +50,7 @@ export async function login(
     });
 
     if (!isPasswordCorrect) {
-      res.status(201).json("Email or password not correct");
+      res.status(201).json('Email or password not correct');
       return;
     }
 

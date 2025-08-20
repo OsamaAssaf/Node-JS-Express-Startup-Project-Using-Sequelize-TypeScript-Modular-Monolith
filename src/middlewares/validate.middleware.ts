@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
-import { ZodObject, ZodError } from "zod";
+import { Request, Response, NextFunction } from 'express';
+import { ZodObject, ZodError } from 'zod';
 
-import { errorResponse } from "../utils/response-handler";
+import { errorResponse } from '../utils/response-handler';
 
 export const validate =
   (schema: ZodObject) => (req: Request, res: Response, next: NextFunction) => {
@@ -21,12 +21,12 @@ export const validate =
     } catch (err) {
       if (err instanceof ZodError) {
         const message = err.issues[0]?.message;
-        let localizedMessage = res.__(message ?? "something_went_wrong");
+        let localizedMessage = res.__(message ?? 'something_went_wrong');
         if (localizedMessage === message) {
-          localizedMessage = res.__("something_went_wrong");
+          localizedMessage = res.__('something_went_wrong');
         }
 
-        return errorResponse(res, localizedMessage ?? res.__("something_went_wrong"));
+        return errorResponse(res, localizedMessage ?? res.__('something_went_wrong'));
         // return res.status(400).json({ errors: err.flatten() });
       }
       return next(err);

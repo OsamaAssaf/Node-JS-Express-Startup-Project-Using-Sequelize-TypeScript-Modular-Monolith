@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
-import { prisma } from "../lib/prisma";
-import { CreatePostInput } from "../schemas/post.schema";
+import { prisma } from '../lib/prisma';
+import { CreatePostInput } from '../schemas/post.schema';
 
 export async function list(_req: Request, res: Response, next: NextFunction) {
   try {

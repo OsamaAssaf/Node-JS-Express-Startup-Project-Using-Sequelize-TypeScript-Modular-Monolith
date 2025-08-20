@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const createPostSchema = z.object({
   body: z.object({
@@ -6,4 +6,4 @@ export const createPostSchema = z.object({
   }),
 });
 
-export type CreatePostInput = z.infer<typeof createPostSchema>["body"];
+export type CreatePostInput = z.infer<typeof createPostSchema>['body'];

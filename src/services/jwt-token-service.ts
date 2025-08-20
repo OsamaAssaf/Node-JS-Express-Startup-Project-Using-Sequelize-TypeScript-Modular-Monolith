@@ -1,5 +1,5 @@
-import { User } from "@prisma/client";
-import jwt from "jsonwebtoken";
+import { User } from '@prisma/client';
+import jwt from 'jsonwebtoken';
 
 export function generateToken(user: User) {
   const token = jwt.sign(
@@ -9,7 +9,7 @@ export function generateToken(user: User) {
       role: user.role,
     },
     process.env.JWT_SECRET!,
-    { expiresIn: "1h" },
+    { expiresIn: '1h' },
   );
 
   return token;

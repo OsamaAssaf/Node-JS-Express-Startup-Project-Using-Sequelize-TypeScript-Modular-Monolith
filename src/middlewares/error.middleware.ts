@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { ZodError } from "zod";
+import { Request, Response } from 'express';
+import { ZodError } from 'zod';
 
-import { errorResponse } from "../utils/response-handler";
+import { errorResponse } from '../utils/response-handler';
 
 export function notFound(req: Request, res: Response) {
-  return errorResponse(res, "Not Found", 404);
+  return errorResponse(res, 'Not Found', 404);
 }
 
 export function errorHandler(err: unknown, req: Request, res: Response) {

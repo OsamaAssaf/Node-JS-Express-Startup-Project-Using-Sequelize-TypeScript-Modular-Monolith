@@ -1,9 +1,9 @@
-import { User } from "@prisma/client";
+import type { User } from '@prisma/client';
 
 declare global {
   namespace Express {
     interface Request {
-      user?: Omit<User, "password">;
+      user?: Omit<User, 'password'>;
       locale: string;
     }
   }

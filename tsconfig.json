@@ -14,7 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     // For nodejs:
     "lib": ["esnext"],
-    "types": ["node","express"],
+    "types": ["node", "express"],
     "typeRoots": ["./src/types", "./node_modules/@types"],
     // and npm install -D @types/node
 
