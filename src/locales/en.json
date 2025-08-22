@@ -1,6 +1,8 @@
 {
   "something_went_wrong": "Something went wrong!",
   "user_already_exists": "User already exists",
+  "not_found": "Not found",
+  "email_or_password_not_correct": "Email or password not correct",
   "validation": {
     "email_invalid": "Invalid email format",
     "password_min": "Password must be at least 6 characters",

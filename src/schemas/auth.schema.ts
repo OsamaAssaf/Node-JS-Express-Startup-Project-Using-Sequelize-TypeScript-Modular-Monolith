@@ -10,8 +10,8 @@ export const registerSchema = z.object({
 
 export const loginSchema = z.object({
   body: z.object({
-    email: z.email('validation.email'),
-    password: z.string().min(6, 'validation.password_min'),
+    email: z.email('validation.email_invalid'),
+    password: z.string('validation.password_required').min(6, 'validation.password_min'),
   }),
 });
 

@@ -26,8 +26,7 @@ export const validate =
           localizedMessage = res.__('something_went_wrong');
         }
 
-        return errorResponse(res, localizedMessage ?? res.__('something_went_wrong'));
-        // return res.status(400).json({ errors: err.flatten() });
+        return errorResponse({ res, message: localizedMessage ?? res.__('something_went_wrong') });
       }
       return next(err);
     }

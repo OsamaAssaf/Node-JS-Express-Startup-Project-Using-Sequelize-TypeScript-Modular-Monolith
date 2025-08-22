@@ -1,23 +1,31 @@
 import type { Response } from 'express';
+import HttpStatusCode from '../types/http-status-code';
 
-export const successResponse = (
-  res: Response,
+type ApiResponseParams<T = unknown> = {
+  res: Response;
+  message?: string;
+  statusCode?: HttpStatusCode;
+  data?: T | null;
+};
+
+export const successResponse = <T>({
+  res,
   message = 'Success',
-  statusCode = 200,
+  statusCode = HttpStatusCode.OK,
   data = null,
-) =>
+}: ApiResponseParams<T>) =>
   res.status(statusCode).json({
     status: 'success',
     message,
     data,
   });
 
-export const errorResponse = (
-  res: Response,
+export const errorResponse = <T>({
+  res,
   message = 'An error occurred',
-  statusCode = 500,
+  statusCode = HttpStatusCode.BAD_REQUEST,
   data = null,
-) =>
+}: ApiResponseParams<T>) =>
   res.status(statusCode).json({
     status: 'failed',
     message,

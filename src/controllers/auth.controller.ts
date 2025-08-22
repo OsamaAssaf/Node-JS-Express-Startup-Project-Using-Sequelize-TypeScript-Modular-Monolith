@@ -4,7 +4,8 @@ import { prisma } from '../lib/prisma';
 import { LoginInput, RegisterInput } from '../schemas/auth.schema';
 import { generateToken } from '../services/jwt-token-service';
 import { comparePassword, encryptPassword } from '../services/password-service';
-import { errorResponse } from '../utils/response-handler';
+import { errorResponse, successResponse } from '../utils/response-handler';
+import { userResponse } from '../responses/user-response';
 
 export async function register(
   req: Request<object, object, RegisterInput>,
@@ -17,14 +18,14 @@ export async function register(
       select: { id: true },
     });
     if (user) {
-      errorResponse(res, res.__('user_already_exists'));
+      errorResponse({ res, message: res.__('user_already_exists') });
       return;
     }
     const hashedPassword = await encryptPassword(req.body.password);
     const createdUser = await prisma.user.create({
       data: { email: req.body.email, name: req.body.name, password: hashedPassword },
     });
-    res.status(201).json(createdUser);
+    successResponse({ res, data: createdUser });
   } catch (e) {
     next(e);
   }
@@ -40,23 +41,22 @@ export async function login(
       where: { email: req.body.email },
     });
     if (!user) {
-      res.status(201).json('Email or password not correct');
+      errorResponse({ res, message: res.__('email_or_password_not_correct') });
       return;
     }
 
-    const isPasswordCorrect = comparePassword({
+    const isPasswordCorrect = await comparePassword({
       plainPassword: req.body.password,
       hashedPassword: user.password,
     });
 
     if (!isPasswordCorrect) {
-      res.status(201).json('Email or password not correct');
+      errorResponse({ res, message: res.__('email_or_password_not_correct') });
       return;
     }
 
     const token = generateToken(user);
-
-    res.status(201).json({ token, user });
+    successResponse({ res, data: { token, user: userResponse(user) } });
   } catch (e) {
     next(e);
   }
