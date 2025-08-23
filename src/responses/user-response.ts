@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { User } from '../entity/User';
 
 export const userResponse = (user: User) => ({
   id: user.id,

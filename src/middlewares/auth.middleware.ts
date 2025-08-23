@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
 
-import { prisma } from '../lib/prisma';
 import { verifyToken } from '../services/jwt-token-service';
 import { errorResponse } from '../utils/response-handler';
 import HttpStatusCode from '../types/http-status-code';
+import { User } from '../entity/User';
 
 export async function authenticate(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
@@ -28,7 +28,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     const userId = decoded.id;
 
-    const user = await prisma.user.findUnique({ where: { id: userId } });
+    const user = await User.findOneBy({ id: userId });
     if (!user) {
       return errorResponse({
         res,

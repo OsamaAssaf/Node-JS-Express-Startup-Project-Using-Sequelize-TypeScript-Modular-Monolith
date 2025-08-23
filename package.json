@@ -17,7 +17,8 @@
     "prisma:migrate-reset": "prisma migrate reset",
     "prisma:studio": "prisma studio",
     "prisma:seed": "ts-node prisma/seed.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "typeorm:migrate": "typeorm migration:run -- -d data-source.ts"
   },
   "repository": {
     "type": "git",

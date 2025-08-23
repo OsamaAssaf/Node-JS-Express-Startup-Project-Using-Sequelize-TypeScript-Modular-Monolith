@@ -1,5 +1,5 @@
-import { User } from '@prisma/client';
 import jwt from 'jsonwebtoken';
+import { User } from '../entity/User';
 
 export function generateToken(user: User) {
   const token = jwt.sign(
