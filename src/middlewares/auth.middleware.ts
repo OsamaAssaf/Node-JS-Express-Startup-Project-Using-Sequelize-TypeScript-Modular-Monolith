@@ -9,11 +9,19 @@ import HttpStatusCode from '../types/http-status-code';
 export async function authenticate(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer '))
-    return errorResponse({ res, message: 'Unauthorized', statusCode: HttpStatusCode.UNAUTHORIZED });
+    return errorResponse({
+      res,
+      message: res.__('unauthorized'),
+      statusCode: HttpStatusCode.UNAUTHORIZED,
+    });
 
   const token = authHeader.split(' ')[1];
   if (!token)
-    return errorResponse({ res, message: 'Unauthorized', statusCode: HttpStatusCode.UNAUTHORIZED });
+    return errorResponse({
+      res,
+      message: res.__('unauthorized'),
+      statusCode: HttpStatusCode.UNAUTHORIZED,
+    });
 
   try {
     const decoded = verifyToken(token) as JwtPayload;
@@ -24,7 +32,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     if (!user) {
       return errorResponse({
         res,
-        message: 'Unauthorized',
+        message: res.__('unauthorized'),
         statusCode: HttpStatusCode.UNAUTHORIZED,
       });
     }
@@ -33,7 +41,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
   } catch {
     return errorResponse({
       res,
-      message: 'Invalid token',
+      message: res.__('invalid_token'),
       statusCode: HttpStatusCode.UNAUTHORIZED,
     });
   }
@@ -44,7 +52,7 @@ export function authorize(...roles: string[]) {
     if (!req.user) {
       return errorResponse({
         res,
-        message: 'Unauthorized',
+        message: res.__('unauthorized'),
         statusCode: HttpStatusCode.UNAUTHORIZED,
       });
     }
@@ -52,7 +60,7 @@ export function authorize(...roles: string[]) {
     if (!roles.includes(req.user.role)) {
       return errorResponse({
         res,
-        message: 'Forbidden: Insufficient permissions',
+        message: res.__('you_do_not_have_permission'),
         statusCode: HttpStatusCode.FORBIDDEN,
       });
     }
@@ -61,65 +69,7 @@ export function authorize(...roles: string[]) {
   };
 }
 
-// Combined middleware that handles both authentication and authorization
-// export function authenticateAndAuthorize(...roles: string[]) {
-//   return async (req: Request, res: Response, next: NextFunction) => {
-//     // First authenticate
-//     const authHeader = req.headers.authorization;
-//     if (!authHeader || !authHeader.startsWith('Bearer '))
-//       return errorResponse({
-//         res,
-//         message: 'Unauthorized',
-//         statusCode: HttpStatusCode.UNAUTHORIZED,
-//       });
-
-//     const token = authHeader.split(' ')[1];
-//     if (!token)
-//       return errorResponse({
-//         res,
-//         message: 'Unauthorized',
-//         statusCode: HttpStatusCode.UNAUTHORIZED,
-//       });
-
-//     try {
-//       const decoded = verifyToken(token) as JwtPayload;
-//       const userId = decoded.id;
-
-//       const user = await prisma.user.findUnique({ where: { id: userId } });
-//       if (!user) {
-//         return errorResponse({
-//           res,
-//           message: 'Unauthorized',
-//           statusCode: HttpStatusCode.UNAUTHORIZED,
-//         });
-//       }
-//       req.user = user;
-
-//       // Then authorize
-//       if (!roles.includes(user.role)) {
-//         return errorResponse({
-//           res,
-//           message: 'Forbidden: Insufficient permissions',
-//           statusCode: HttpStatusCode.FORBIDDEN,
-//         });
-//       }
-
-//       next();
-//     } catch {
-//       return errorResponse({
-//         res,
-//         message: 'Invalid token',
-//         statusCode: HttpStatusCode.UNAUTHORIZED,
-//       });
-//     }
-//   };
-// }
-
 // Convenience middleware for common role checks
 export const requireAdmin = authorize('ADMIN');
 export const requireUser = authorize('USER');
 export const requireAuth = authenticate;
-
-// Convenience combined middleware
-// export const requireAdminAuth = authenticateAndAuthorize('ADMIN');
-// export const requireUserAuth = authenticateAndAuthorize('USER');

@@ -8,7 +8,7 @@ export function notFound(req: Request, res: Response) {
   return errorResponse({ res, message: res.__('not_found'), statusCode: HttpStatusCode.NOT_FOUND });
 }
 
-export function errorHandler(err: unknown, req: Request, res: Response) {
+export function errorHandler(err: unknown, _req: Request, res: Response) {
   if (err instanceof ZodError) {
     return errorResponse({ res, message: err.message });
   }

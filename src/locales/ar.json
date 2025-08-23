@@ -3,6 +3,10 @@
   "user_already_exists": "المستخدم موجود من قبل",
   "not_found": "غير موجود",
   "email_or_password_not_correct": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "unauthorized": "غير مصرح به",
+  "invalid_token": "رمز غير صالح",
+  "you_do_not_have_permission": "ليس لديك إذن",
+  "success": "تم بنجاح",
   "validation": {
     "email_invalid": "البريد الإلكتروني غير صالح",
     "password_min": "كلمة المرور يجب أن تكون على الأقل 6 أحرف",
