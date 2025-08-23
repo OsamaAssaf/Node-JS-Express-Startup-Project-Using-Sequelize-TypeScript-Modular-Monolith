@@ -1,5 +1,5 @@
 {
-  "name": "node-js-express-startup-project",
+  "name": "node-js-express-startup-project-using-prisma",
   "version": "1.0.0",
   "description": "Production-ready Node.js + Express starter with pre-configured structure, middlewares, and environment setup.",
   "main": "index.js",
@@ -20,16 +20,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project.git"
+    "url": "git+https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project-Using-Prisma.git"
   },
   "keywords": [],
   "author": "Osama Assaf",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project/issues"
+    "url": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project-Using-Prisma/issues"
   },
-  "homepage": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project#readme",
+  "homepage": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project-Using-Prisma#readme",
   "dependencies": {
     "@prisma/client": "^6.14.0",
     "bcrypt": "^6.0.0",
