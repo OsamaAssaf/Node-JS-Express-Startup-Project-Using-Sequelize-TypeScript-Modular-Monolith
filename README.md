@@ -9,3 +9,5 @@
 # npm-check also check packages updates
 
 # To create eslint using airbnb: npx create-airbnb-x-config
+
+git remote remove origin
