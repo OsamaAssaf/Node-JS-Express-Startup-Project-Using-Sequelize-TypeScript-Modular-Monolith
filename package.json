@@ -12,11 +12,6 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,js,json,md}\"",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:migrate-reset": "prisma migrate reset",
-    "prisma:studio": "prisma studio",
-    "prisma:seed": "ts-node prisma/seed.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "typeorm:migrate": "typeorm migration:run -- -d data-source.ts"
   },
@@ -33,7 +28,6 @@
   },
   "homepage": "https://github.com/OsamaAssaf/Node-JS-Express-Startup-Project-Using-TypeORM#readme",
   "dependencies": {
-    "@prisma/client": "^6.14.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
@@ -42,25 +36,24 @@
     "pg": "^8.14.1",
     "reflect-metadata": "^0.2.2",
     "typeorm": "0.3.26",
-    "zod": "^4.0.17"
+    "zod": "^4.1.0"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.2",
-    "@eslint/js": "^9.33.0",
+    "@eslint/js": "^9.34.0",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.3",
     "@types/i18n": "^0.13.12",
     "@types/jsonwebtoken": "^9.0.10",
-    "eslint": "^9.33.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.3.0",
     "jiti": "^2.5.1",
     "nodemon": "^3.1.10",
     "prettier": "3.6.2",
     "prisma": "^6.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
     "typescript-eslint": "^8.40.0"
   }
 }
