@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 
 import { CreateUserInput, ListUsersQuery } from '../schemas/user.schema';
 import { successResponse } from '../utils/response-handler';
+import { Role, User } from '../entity/User';
+import { encryptPassword } from '../services/password-service';
+import { userResponse } from '../responses/user-response';
 
 export async function list(
   req: Request<object, object, ListUsersQuery>,
@@ -9,15 +12,15 @@ export async function list(
   next: NextFunction,
 ) {
   try {
-    // const role = req.query.role;
-    // const where: { role?: Role } = {};
-    // if (role) {
-    //   where.role = role as Role;
-    // }
+    const role = req.query.role;
+    const where: { role?: Role } = {};
+    if (role && typeof role === 'string' && Object.values(Role).includes(role as Role)) {
+      where.role = role as Role;
+    }
 
-    // const users: User[] = await prisma.user.findMany({ where });
-    // const formattedUsers = users.map(userResponse);
-    successResponse({ res, data: null });
+    const users = await User.findBy(where);
+    const formattedUsers = users.map(userResponse);
+    successResponse({ res, data: formattedUsers });
   } catch (e) {
     next(e);
   }
@@ -29,11 +32,15 @@ export async function create(
   next: NextFunction,
 ) {
   try {
-    // const hashedPassword = await encryptPassword(req.body.password);
-    // const user = await prisma.user.create({
-    //   data: { email: req.body.email, name: req.body.name, password: hashedPassword },
-    // });
-    successResponse({ res });
+    const hashedPassword = await encryptPassword(req.body.password);
+    const user = new User();
+    user.email = req.body.email;
+    user.name = req.body.name!;
+    user.password = hashedPassword;
+
+    const createdUser = await user.save();
+
+    successResponse({ res, data: createdUser });
   } catch (e) {
     next(e);
   }

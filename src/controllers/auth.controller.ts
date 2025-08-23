@@ -13,7 +13,7 @@ export async function register(
   next: NextFunction,
 ) {
   try {
-    const user = await User.findOneBy({ email: req.body.email });
+    const user = await User.findOne({ where: { email: req.body.email }, select: { id: true } });
 
     if (user) {
       errorResponse({ res, message: res.__('user_already_exists') });
@@ -39,7 +39,7 @@ export async function login(
   next: NextFunction,
 ) {
   try {
-    const user = await User.findOne({ where: { email: req.body.email }, select: { id: true } });
+    const user = await User.findOneBy({ email: req.body.email });
 
     if (!user) {
       errorResponse({ res, message: res.__('email_or_password_not_correct') });
