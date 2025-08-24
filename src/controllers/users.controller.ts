@@ -2,9 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 
 import { CreateUserInput, ListUsersQuery } from '../schemas/user.schema';
 import { successResponse } from '../utils/response-handler';
-import { Role, User } from '../entity/User';
 import { encryptPassword } from '../services/password-service';
-import { userResponse } from '../responses/user-response';
+import User, { Role } from '../models/user';
 
 export async function list(
   req: Request<object, object, ListUsersQuery>,
@@ -18,9 +17,8 @@ export async function list(
       where.role = role as Role;
     }
 
-    const users = await User.findBy(where);
-    const formattedUsers = users.map(userResponse);
-    successResponse({ res, data: formattedUsers });
+    const users = await User.findOne({ where });
+    successResponse({ res, data: users });
   } catch (e) {
     next(e);
   }

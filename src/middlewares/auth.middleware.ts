@@ -4,7 +4,7 @@ import { JwtPayload } from 'jsonwebtoken';
 import { verifyToken } from '../services/jwt-token-service';
 import { errorResponse } from '../utils/response-handler';
 import HttpStatusCode from '../types/http-status-code';
-import { User } from '../entity/User';
+import User from '../models/user';
 
 export async function authenticate(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
@@ -28,7 +28,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     const userId = decoded.id;
 
-    const user = await User.findOneBy({ id: userId });
+    const user = await User.findByPk(userId);
     if (!user) {
       return errorResponse({
         res,

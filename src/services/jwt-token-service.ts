@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../entity/User';
+import User from '../models/user';
 
 export function generateToken(user: User) {
   const token = jwt.sign(

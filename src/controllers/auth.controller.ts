@@ -4,8 +4,7 @@ import { LoginInput, RegisterInput } from '../schemas/auth.schema';
 import { generateToken } from '../services/jwt-token-service';
 import { comparePassword, encryptPassword } from '../services/password-service';
 import { errorResponse, successResponse } from '../utils/response-handler';
-import { userResponse } from '../responses/user-response';
-import { User } from '../entity/User';
+import User from '../models/user';
 
 export async function register(
   req: Request<object, object, RegisterInput>,
@@ -13,7 +12,10 @@ export async function register(
   next: NextFunction,
 ) {
   try {
-    const user = await User.findOne({ where: { email: req.body.email }, select: { id: true } });
+    const user = await User.findOne({
+      where: { email: req.body.email },
+      attributes: { include: ['id'] },
+    });
 
     if (user) {
       errorResponse({ res, message: res.__('user_already_exists') });
@@ -39,7 +41,7 @@ export async function login(
   next: NextFunction,
 ) {
   try {
-    const user = await User.findOneBy({ email: req.body.email });
+    const user = await User.findOne({ where: { email: req.body.email } });
 
     if (!user) {
       errorResponse({ res, message: res.__('email_or_password_not_correct') });
@@ -57,7 +59,7 @@ export async function login(
     }
 
     const token = generateToken(user);
-    successResponse({ res, data: { token, user: userResponse(user) } });
+    successResponse({ res, data: { token, user } });
   } catch (e) {
     next(e);
   }
