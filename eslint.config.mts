@@ -16,7 +16,7 @@ export default defineConfig([
   globalIgnores(['dist/*', 'node_modules/*', '.vscode/*']),
   {
     rules: {
-      'no-console': 'warn',
+      // 'no-console': 'warn',
       'array-callback-return': 'warn',
       'for-direction': 'error',
       'no-await-in-loop': 'warn',

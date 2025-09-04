@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-
-import { LoginInput, RegisterInput } from '../schemas/auth.schema';
-import { generateToken } from '../services/jwt-token-service';
-import { comparePassword, encryptPassword } from '../services/password-service';
-import { errorResponse, successResponse } from '../utils/response-handler';
-import User from '../models/user';
+import { errorResponse, successResponse } from '../../../shared/utils/response-handler';
+import { encryptPassword, comparePassword } from '../password.service';
+import User from '../user/user.model';
+import { RegisterInput, LoginInput } from './auth.schema';
+import { generateToken } from './jwt-token.service';
 
 export async function register(
   req: Request<object, object, RegisterInput>,

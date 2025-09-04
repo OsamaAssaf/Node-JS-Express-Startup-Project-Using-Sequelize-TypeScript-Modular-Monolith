@@ -4,7 +4,7 @@ import { ZodError } from 'zod';
 import { errorResponse } from '../utils/response-handler';
 import HttpStatusCode from '../types/http-status-code';
 
-export function notFound(req: Request, res: Response) {
+export function notFound(_: Request, res: Response) {
   return errorResponse({ res, message: res.__('not_found'), statusCode: HttpStatusCode.NOT_FOUND });
 }
 

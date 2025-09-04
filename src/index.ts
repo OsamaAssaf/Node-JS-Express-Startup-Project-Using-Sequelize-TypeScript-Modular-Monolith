@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import app from './app';
-import { env } from './schemas/env.schema.parsed';
-import sequelize from './lib/sequelize';
+import { env } from './shared/schemas/env.schema.parsed';
+import sequelize from './shared/lib/sequelize';
 
 const port = env.PORT ?? 3000;
 

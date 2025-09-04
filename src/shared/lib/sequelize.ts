@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { env } from '../schemas/env.schema.parsed';
+import User from '../../modules/users/user/user.model';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
@@ -8,7 +9,7 @@ const sequelize = new Sequelize({
   port: env.DP_PORT,
   username: env.DP_USERNAME,
   password: env.DP_PASSWORD,
-  models: [__dirname + '/../models'],
+  models: [User],
 });
 
 export default sequelize;

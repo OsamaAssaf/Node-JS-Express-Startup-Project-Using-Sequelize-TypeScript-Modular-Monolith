@@ -12,7 +12,6 @@ export const validate =
         params: req.params,
       });
 
-      // assign parsed values back (sanitized)
       req.body = result.body ?? req.body;
       if (result.query) Object.assign(req.query, result.query);
       if (result.params) Object.assign(req.params, result.params);

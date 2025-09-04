@@ -1,9 +1,9 @@
 import express from 'express';
 
-import i18n from './config/i18n';
-import { errorHandler, notFound } from './middlewares/error.middleware';
-import { localeMiddleware } from './middlewares/locale.middleware';
-import routes from './routes';
+import i18n from './shared/lib/i18n';
+import { errorHandler, notFound } from './shared/middlewares/error.middleware';
+import { localeMiddleware } from './shared/middlewares/locale.middleware';
+import routes from './shared/routes';
 
 const app = express();
 

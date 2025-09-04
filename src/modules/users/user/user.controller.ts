@@ -1,9 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-
-import { CreateUserInput, ListUsersQuery } from '../schemas/user.schema';
-import { successResponse } from '../utils/response-handler';
-import { encryptPassword } from '../services/password-service';
-import User, { Role } from '../models/user';
+import { encryptPassword } from '../password.service';
+import { successResponse } from '../../../shared/utils/response-handler';
+import User, { Role } from './user.model';
+import { ListUsersQuery, CreateUserInput } from './user.schema';
 
 export async function list(
   req: Request<object, object, ListUsersQuery>,

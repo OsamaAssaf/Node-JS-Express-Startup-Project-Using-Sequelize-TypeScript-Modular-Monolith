@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
-
-import { verifyToken } from '../services/jwt-token-service';
+import { verifyToken } from '../../modules/users/auth/jwt-token.service';
 import { errorResponse } from '../utils/response-handler';
 import HttpStatusCode from '../types/http-status-code';
-import User from '../models/user';
+import User from '../../modules/users/user/user.model';
 
 export async function authenticate(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
@@ -69,7 +68,6 @@ export function authorize(...roles: string[]) {
   };
 }
 
-// Convenience middleware for common role checks
 export const requireAdmin = authorize('ADMIN');
 export const requireUser = authorize('USER');
 export const requireAuth = authenticate;
